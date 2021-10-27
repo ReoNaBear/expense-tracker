@@ -1,0 +1,79 @@
+{
+  "categorySeeds": [
+    {
+      "name": "家居物業",
+      "name_en": "home",
+      "icon": "fas fa-home"
+    },
+    {
+      "name": "交通出行",
+      "name_en": "transportation",
+      "icon": "fas fa-shuttle-van"
+    },
+    {
+      "name": "休閒娛樂",
+      "name_en": "entertainment",
+      "icon": "fas fa-grin-beam"
+    },
+    {
+      "name": "餐飲食品",
+      "name_en": "food",
+      "icon": "fas fa-utensils"
+    },
+    {
+      "name": "其他",
+      "name_en": "other",
+      "icon": "fas fa-pen"
+    }
+  ],
+    "userSeeds": [
+      {
+        "name": "廣志",
+        "email": "user1@example.com",
+        "password": "12345678"
+      },
+      {
+        "name": "小新",
+        "email": "user2@example.com",
+        "password": "12345678"
+      }
+    ],
+      "expenseSeeds": [
+        {
+          "name": "午餐",
+          "date": "2021-10-01",
+          "amount": 60,
+          "category": "餐飲食品"
+        },
+        {
+          "name": "捷運",
+          "date": "2021-09-25",
+          "amount": 120,
+          "category": "交通出行"
+        },
+        {
+          "name": "電影：驚奇隊長",
+          "date": "2021-10-05",
+          "amount": 220,
+          "category": "休閒娛樂"
+        },
+        {
+          "name": "租金",
+          "date": "2021-10-08",
+          "amount": 25000,
+          "category": "家居物業"
+        },
+        {
+          "name": "貓抓板",
+          "date": "2021-09-27",
+          "amount": 800,
+          "category": "其他"
+        },
+        {
+          "name": "買運動器具-護腕",
+          "date": "2021-10-10",
+          "amount": 250,
+          "category": "休閒娛樂"
+        }
+      ]
+}
