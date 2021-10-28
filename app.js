@@ -7,13 +7,20 @@ const exphbs = require('express-handlebars');
 const session = require('express-session')
 const app = express()
 const routes = require('./routes')
+const methodOverride = require('method-override')
 const flash = require('connect-flash')
 const bodyParser = require('body-parser')
 const usePassport = require('./config/passport')
 require('./config/mongoose')
+const PORT = process.env.PORT
 
-
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs({
+  defaultLayout: 'main', extname: '.hbs',
+  //新增helper幫助category的使用
+  helpers: {
+    isEqual: function (a, b) { return a === b }
+  }
+}))
 app.set('view engine', 'hbs')
 
 app.use(session({
@@ -22,6 +29,7 @@ app.use(session({
   saveUninitialized: true
 }))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 usePassport(app)
 app.use(flash())
@@ -35,6 +43,6 @@ app.use((req, res, next) => {
 
 app.use(routes)
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log('App is running on http://localhost:3000')
 })

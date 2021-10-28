@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Expense = require('../../models/expense')
 const Category = require('../../models/category')
+const moment = require('moment')
 
 
 // router.get('/', (req, res) => {
@@ -22,10 +23,12 @@ router.get('/', async (req, res) => {
       .populate('categoryId', 'icon')
       .sort({ _id: 'asc' })
       .lean()
-    // let totalAmount = 0
+    let totalAmount = 0
     for (let expense of expenses) {
+      console.log(expense)
+      expense.date = moment(expense.date).format('YYYY/MM/DD')
       expense.icon = expense.categoryId.icon
-      // totalAmount += expense.amount
+      totalAmount += expense.amount
     }
     return res.render('home', { expenses })
   } catch (err) {
