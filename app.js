@@ -4,7 +4,7 @@ const session = require('express-session')
 const app = express()
 const routes = require('./routes')
 const flash = require('connect-flash')
-
+const bodyParser = require('body-parser')
 const usePassport = require('./config/passport')
 require('./config/mongoose')
 
@@ -21,6 +21,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 usePassport(app)
 app.use(flash())
