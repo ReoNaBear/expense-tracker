@@ -63,6 +63,15 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+router.delete('/:id', (req, res) => {
+  const userId = req.user._id
+  const _id = req.params.id
+  return Expense.findOne({ _id, userId })
+    .then((expense) => expense.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 
 
 
