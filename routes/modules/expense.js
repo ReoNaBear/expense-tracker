@@ -7,7 +7,7 @@ const moment = require('moment')
 router.post('/new', (req, res) => {
   const userId = req.user._id
   const { name, date, amount, category } = req.body
-  Category.findOne({ name: category })
+  Category.findOne({ name_tw: category })
     .lean()
     .then((categoryItem) => {
       const categoryId = categoryItem._id
@@ -24,13 +24,17 @@ router.get('/:id/edit', async (req, res) => {
   const _id = req.params.id
   const userId = req.user._id
   Expense.findOne({ _id, userId })
-    .populate('categoryId', 'name')
-    .lean((expense) => {
-      expense.category = record.categoryId.name
-      expense.date = moment(expense.date).format('YYYY/MM/DD')
+    .populate('categoryId', 'name_tw')
+    .lean()
+    .then((expense) => {
+      expense.category = expense.categoryId.name_tw
+      expense.date = moment(expense.date).format('YYYY-MM-DD')
+      console.log(expense)
       return expense
     })
-    .then(expense => res.render('edit', { expense }))
+    .then((expense) => {
+      res.render('edit', { expense })
+    })
     .catch(error => {
       console.log(error)
     })
@@ -42,7 +46,7 @@ router.put('/:id', (req, res) => {
   const _id = req.params.id
   const { name, date, amount, category } = req.body
 
-  Category.findOne({ name: category })
+  Category.findOne({ name_tw: category })
     .lean()
     .then((categoryItem) => {
       const categoryId = categoryItem._id

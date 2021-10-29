@@ -6,7 +6,7 @@ const { authenticator } = require('../middleware/auth')
 const users = require('./modules/users')
 const auth = require('./modules/auth')
 
-router.use('/expense', expense)
+router.use('/expense', authenticator, expense)
 router.use('/users', users)
 router.use('/auth', auth)
 

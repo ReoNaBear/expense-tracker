@@ -19,7 +19,7 @@ db.once('open', () => {
         })
         const userId = user._id
         for (let expense of expenseSeeds) {
-          const category = await Category.findOne({ name: expense.category }).lean()
+          const category = await Category.findOne({ name_tw: expense.category }).lean()
           const categoryId = category._id
           await Expense.create({
             name: expense.name,

@@ -15,8 +15,7 @@ router.get('/', async (req, res) => {
       .lean()
     let totalAmount = 0
     for (let expense of expenses) {
-      console.log(expense)
-      expense.date = moment(expense.date).format('YYYY/MM/DD')
+      expense.date = moment(expense.date).format('YYYY-MM-DD')
       expense.icon = expense.categoryId.icon
       totalAmount += expense.amount
     }
@@ -24,6 +23,12 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.log("error")
   }
+})
+
+router.put('/', (req, res) => {
+  const userId = req.user._id
+  const { category, month } = req.body
+  const filter = { userId }
 })
 
 router.get('/new', (req, res) => {
