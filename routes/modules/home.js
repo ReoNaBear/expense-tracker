@@ -5,16 +5,6 @@ const Category = require('../../models/category')
 const moment = require('moment')
 
 
-// router.get('/', (req, res) => {
-//   const userId = req.user._id
-//   Expense.find({ userId })
-//     .populate('categoryId', 'icon')
-//     .lean()
-//     .sort({ _id: 'asc' })
-//     .then(expenses => res.render('home', { expenses }))
-
-//     .catch(error => console.error(error))
-// })
 
 router.get('/', async (req, res) => {
   try {
@@ -30,7 +20,7 @@ router.get('/', async (req, res) => {
       expense.icon = expense.categoryId.icon
       totalAmount += expense.amount
     }
-    return res.render('home', { expenses })
+    return res.render('home', { expenses, totalAmount })
   } catch (err) {
     console.log("error")
   }

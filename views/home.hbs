@@ -23,6 +23,19 @@
   </div>
 </div>
 
+{{#if expenses}}
+<div class="row mx-auto justify-content-center my-4">
+  <div class="col-7 d-flex flex-row justify-content-center">
+    <div class="mr-3" style="font-size: 25px;">Total Amount：</div>
+    <h1 style="color:	#375a7f">${{totalAmount}}</h1>
+  </div>
+</div>
+{{else}}
+<div class="row mx-auto text-center mt-5">
+  <h1 class="col-12" style="color:#666666">還沒有任何紀錄喔~</h1>
+</div>
+{{/if}}
+
 <ul class="list-group">
   {{#each expenses}}
   <li class="list-group-item my-1" style="box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2); border-radius: 10px;">
