@@ -12,7 +12,7 @@ const flash = require('connect-flash')
 const bodyParser = require('body-parser')
 const usePassport = require('./config/passport')
 require('./config/mongoose')
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 app.engine('hbs', exphbs({
   defaultLayout: 'main', extname: '.hbs',
@@ -44,5 +44,5 @@ app.use((req, res, next) => {
 app.use(routes)
 
 app.listen(PORT, () => {
-  console.log('App is running on http://localhost:3000')
+  console.log(`App is running on http://localhost:${PORT}`)
 })
