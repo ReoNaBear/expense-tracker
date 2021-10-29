@@ -25,11 +25,42 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.put('/', (req, res) => {
+
+
+
+router.put('/', async (req, res) => {
   const userId = req.user._id
   const { category, month } = req.body
   const filter = { userId }
+  const categoryType = category ? await Category.findOne({ name_tw: category }).lean() : ''
+  categoryType ? filter.categoryId = categoryType._id : ''
+  const categoryName = categoryType ? categoryType.name_en : ''
+  month ? filter.date = { $gte: month, $lt: moment(month).add('1', 'M') } : ''
+  console.log(categoryType)
+  console.log(categoryName)
+  let totalAmount = 0
+
+
+  await Expense.find(filter)
+    .populate('categoryId', 'icon')
+    .sort({ date: -1 })
+    .lean()
+    .then((expenses) => {
+      for (let expense of expenses) {
+        expense.date = moment(expense.date).format('YYYY-MM-DD')
+        expense.icon = expense.categoryId.icon
+        totalAmount += expense.amount
+      }
+      if (categoryName === '') {
+        return res.render('home', { expenses, totalAmount, month })
+      } else {
+        return res.render('home', { expenses, totalAmount, month, categoryName })
+      }
+    })
+    .catch((error) => console.log(error))
 })
+
+
 
 router.get('/new', (req, res) => {
   res.render('new')
