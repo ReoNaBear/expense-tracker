@@ -36,8 +36,6 @@ router.put('/', async (req, res) => {
   categoryType ? filter.categoryId = categoryType._id : ''
   const categoryName = categoryType ? categoryType.name_en : ''
   month ? filter.date = { $gte: month, $lt: moment(month).add('1', 'M') } : ''
-  console.log(categoryType)
-  console.log(categoryName)
   let totalAmount = 0
 
 
