@@ -50,8 +50,8 @@ npm run dev
 
 |  Email             |  Password  |
 |  :----:            |   :----:   |
-| user1@examole.com  | 12345678   |
-| user1@examole.com  | 12345678   |
+| user1@example.com  | 12345678   |
+| user2@example.com  | 12345678   |
 
 ### Web demo
 -------------
